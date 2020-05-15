@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mintnodeapp-config
+data:
+  username: John Snow
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mintnodeapp-deployment
+  labels:
+    app: mintnodeapp-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: mintnodeapp
+  template:
+    metadata:
+      labels:
+        app: mintnodeapp
+    spec:
+      containers:
+      - name: mintnodeapp
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        image: socgen.azurecr.io/socnodeapp:14
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+          - name: USER
+            valueFrom:
+              configMapKeyRef:
+                 name: mintnodeapp-config
+                 key: username
+          - name: WeatherService
+            value: mintcoreapp-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mintnodeapp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: mintnodeapp
+  ports:
+    - nodePort: 31000
+      port: 31000
+      targetPort: 8080
