@@ -29,7 +29,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-        image: socgen.azurecr.io/socnodeapp:14
+        image: xxxxx.azurecr.io/socnodeapp:14
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
