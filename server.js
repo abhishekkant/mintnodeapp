@@ -7,7 +7,7 @@ const request = require('request');
 const dotenv = require('dotenv');
 
 // Constants
-const PORT = 8080;
+const PORT = 8889;
 const HOST = '0.0.0.0';
 
 // App
