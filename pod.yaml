@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: mintnodeapp
-    image: abhishekkant/xxxxapp
+    image: sgaz204:v1
     resources:
       limits:
         memory: "256Mi"
@@ -15,10 +15,8 @@ spec:
     livenessProbe:
       httpGet:
         path: /
-        port: 8080
+        port: 8888
       initialDelaySeconds: 5
-      periodSeconds: 10
+      periodSeconds: 30
     ports:
-    - containerPort: 8080
-  nodeSelector:
-    purpose: training
+    - containerPort: 8888

@@ -12,7 +12,7 @@ metadata:
   labels:
     app: mintnodeapp-deployment
 spec:
-  replicas: 3
+  replicas: 5
   strategy:
     type: RollingUpdate
   selector:
@@ -29,10 +29,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-        image: xxxxx.azurecr.io/socnodeapp:14
+        image: sgaz204.azurecr.io/sgaz204:3
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 8888
         env:
           - name: USER
             valueFrom:
@@ -53,4 +53,4 @@ spec:
   ports:
     - nodePort: 31000
       port: 31000
-      targetPort: 8080
+      targetPort: 8888
