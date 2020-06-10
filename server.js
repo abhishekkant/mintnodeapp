@@ -13,7 +13,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 dotenv.config();
-var content = 'Namaste - India ' + process.env.USER + ' ' + os.hostname();
+var content = 'Namaste - Bharat ' + process.env.USER + ' ' + os.hostname();
 
 app.get('/', (req, res) => {
  
